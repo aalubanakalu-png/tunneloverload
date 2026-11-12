@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tunnel Overload</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div id="flash"></div>
+<div id="turn" aria-live="polite"><b>Turn your phone upright</b><span>Tunnel Overload plays in portrait.</span></div>
+
+<div id="hud" hidden>
+  <div id="hudc">
+    <div id="att">Attempt <b id="attn">1</b></div>
+    <div id="bar"><i id="barf"></i></div>
+    <div id="stats"><span>Best <b id="best">0</b>%</span><span>Zone <b id="zone">1</b></span></div>
+  </div>
+</div>
+<div id="cap"></div>
+<div id="tut" hidden>
+  <div class="tk"><span id="tut-n"></span><b id="tut-t"></b></div>
+  <p id="tut-x"></p>
+  <div id="tut-barw" hidden><i id="tut-bar"></i></div>
+</div>
+<div id="aim" hidden>
+  <div id="chev" hidden><i class="u"></i><i class="d"></i><i class="l"></i><i class="r"></i></div>
+  <div id="ring" hidden></div>
+  <svg id="arrow" viewBox="0 0 58 30" hidden aria-hidden="true"><path d="M3 9H35V3L55 15L35 27V21H3Z" fill="var(--acc)" stroke="#000" stroke-width="3" stroke-linejoin="round"/></svg>
+</div>
+
+<section class="screen" id="menu" aria-label="Main menu">
+  <div class="col">
+    <div class="top">
+      <button class="ico" id="mute" type="button" aria-label="Sound on">🔊</button>
+      <h1 class="rise" style="--i:0">tunnel<span>overload</span></h1>
+      <div class="rise" style="--i:1"><div class="meter" id="m-meter"></div>
+      <p class="tally"><b id="m-best">0</b>% best &middot; <b id="m-att">0</b> attempts</p></div>
+    </div>
+    <div class="bottom">
+      <button class="slab s1 rise" style="--i:2" id="play" type="button"><span>Play</span></button>
+      <button class="slab s2 rise" style="--i:3" id="open-tut" type="button"><span>Tutorial</span></button>
+      <button class="slab s3 rise" style="--i:4" id="open-board" type="button"><span>Leaderboard</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="board" aria-label="Leaderboard" hidden>
+  <div class="col">
+    <div class="top">
+      <button class="back rise" style="--i:0" id="board-back" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 4 7.5 12l8 8 2-2-6-6 6-6z"/></svg><span>Menu</span></button>
+      <h2 class="rise" style="--i:1">leader<span>board</span></h2>
+      <p class="tally rise" style="--i:2">Your ten best runs on this device.</p>
+    </div>
+    <ol id="lb"></ol>
+    <div class="bottom">
+      <p id="lbmsg"></p>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="over" hidden aria-label="Crashed">
+  <div class="col">
+    <div class="top">
+      <span class="tag bad rise" style="--i:0">crashed</span>
+      <div class="res rise" style="--i:1"><h2 id="over-pct">0%</h2><span class="stamp" id="over-new" hidden>new best</span></div>
+      <div class="rise" style="--i:2"><div class="meter" id="over-meter"></div>
+      <p class="tally" id="over-sub"></p></div>
+    </div>
+    <div class="bottom">
+      <button class="slab s1 rise" style="--i:3" id="over-retry" type="button"><span>Try again</span></button>
+      <button class="slab s2 rise" style="--i:4" id="over-home" type="button"><span>Home</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="tutend" hidden aria-label="Tutorial complete">
+  <div class="col">
+    <div class="top">
+      <span class="tag rise" style="--i:0">tutorial clear</span>
+      <h2 class="rise" style="--i:1">you're<br>ready<span>.</span></h2>
+      <p class="lead rise" style="--i:2">Every attempt is the same course. Crash, learn where the gaps are, go again. The tunnel speeds up and the slabs spin faster as the colors change.</p>
+    </div>
+    <div class="bottom">
+      <button class="slab s1 rise" style="--i:3" id="te-play" type="button"><span>Play</span></button>
+      <button class="slab s2 rise" style="--i:4" id="te-again" type="button"><span>Replay tutorial</span></button>
+      <button class="slab s3 rise" style="--i:5" id="te-menu" type="button"><span>Menu</span></button>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
